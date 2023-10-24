@@ -1,4 +1,4 @@
-<img src="https://www.aihr.com/wp-content/uploads/High-employee-turnover.jpg" width="800">
+<img src="https://www.ceo-review.com/wp-content/webp-express/webp-images/uploads/2019/10/462b37d7-553a-41c0-a84b-1c7351e1778c.jpg.webp" width="800">
 
 # Employee_Turnover_Predicition
 
