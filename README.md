@@ -1,8 +1,5 @@
 <img src="https://www.aihr.com/wp-content/uploads/High-employee-turnover.jpg" width="800">
 
-
-
-
 # Employee_Turnover_Predicition
 
 ## Table of Contents
