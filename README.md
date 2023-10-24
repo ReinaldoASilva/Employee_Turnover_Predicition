@@ -35,6 +35,7 @@ Follow these steps to get started with the project:
    git clone https://github.com/ReinaldoASilva/Employee_Turnover_Predicition.git
 
 ## Usage
+
 To use the project, you can run the app.py script:
 - python app.py
   
@@ -46,14 +47,18 @@ Train a Random Forest model to predict employee turnover.
 Provide predictions based on the model.
 
 ## Dependencies
+
 This project relies on the following Python libraries:
 
 - pandas
 - numpy
 - scikit-learn
+- 
 You can install these libraries using the requirements.txt file provided.
 
+## Contributing
 
+Contributions to this project are welcome. You can contribute by submitting issues or pull requests. 
 
 
 
