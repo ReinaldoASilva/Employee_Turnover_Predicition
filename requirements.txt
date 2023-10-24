@@ -1,0 +1,12 @@
+pandas 
+numpy 
+LogisticRegression
+train_test_split
+ccuracy_score 
+classification_report
+confusion_matrix
+SMOTE
+sklearn
+GridSearchCV
+RandomForestClassifier
+matplotlib
