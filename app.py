@@ -7,6 +7,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
 
 
 #------------------------------------------------- Read Dataset ------------------------------------------------- 
@@ -163,35 +164,41 @@ print("Relatório de Classificação:")
 print(report)
 
 # The recall for claa 1 ( employeed leaving)improved even futher, reaching 80%. This means the model is better identifying employees\
-# Who are likely to leave. Accuracy
+# Who are likely to leave. Accuracy for class 1 also improved reaching 50%. This is a better balance between precision and recall.
+# But this is still not the best result, we need to improvise
 
 
 #------------------------------------------------------------------------------------------------------ 
 
-# Rando forest
+# The Random Forest model was chosen for the employee turnover prediction project due to its high accuracy, robustness, \
+# ability to handle diverse data types, and interpretability. It is particularly suited for predicting future events like\
+#  employee departures. The most critical parameter to adjust is the number of trees in the forest (n_estimators),\
+#  which impacts both accuracy and training time. Additionally, other hyperparameters related to tree depth and splitting\
+#  criteria can be fine-tuned. The objective is to create a precise, reliable, and interpretable model that predicts \
+# employee turnover based on various factors, including the department in which they work and other relevant features.
 cols=['satisfaction_level', 'last_evaluation', 'time_spend_company', 'Work_accident', 'promotion_last_5years','department_RandD', 'department_hr', 'department_management', 'salary_high', 'salary_low'] 
 X=data[cols]
 y=data['left']
 
-# Divisão dos dados em conjunto de train e test
+# Splitting data into train and test sets
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Criar um modelo
+# Create Model
 rf_model = RandomForestClassifier(n_estimators=100, max_depth=10,random_state=42)
 
-# Ajuste do modelo
+# Adjust Model
 rf_model.fit(X_train, y_train)
 
-# Previsão com o modelo de teste
+# Prediction with the test model
 y_pred = rf_model.predict(X_test)
 
-# Avaliação do modelo com os dados de teste
+# Model evaluation with test data
 accuracy = accuracy_score(y_test, y_pred)
 confusion = confusion_matrix(y_test, y_pred)
 report = classification_report(y_test, y_pred)
 
-# Exibir os resultados
+# View Results
 print("Acurácia do modelo com dados de teste: {:.2f}%".format(accuracy * 100))
 print("Matriz de Confusão:")
 print(confusion)
@@ -200,25 +207,34 @@ print(report)
 
 
 #------------------------------------------------------------------------------------------------------ 
-# Obter a importância das variáveis a partir do modelo Random Forest
+
+# Obtain the imporance os variables from the Random Forest Model
 feature_importance = rf_model.feature_importances_
 
-# Normalizar as importâncias para que a soma seja igual a 100%
+# Normalize the amounts so that sum is equal tp 100%
 total_importance = sum(feature_importance)
 normalized_importance = [imp / total_importance * 100 for imp in feature_importance]
 
-# Criar um dicionário que mapeia o nome do departamento à sua importância normalizada
+# Create a dictionary that maps the department name to its importance normalizes
 department_importance = dict(zip(cols, normalized_importance))
 
-# Classificar os departamentos com base em sua importância
+# Rank departments based on their importance
 sorted_departments = sorted(department_importance, key=department_importance.get, reverse=True)
 
-# Exibir os departamentos mais influentes na rotatividade em porcentagem
+# Display the most influencital departments in turnover in percentage
 print("Departamentos mais influentes na rotatividade (em porcentagem):")
 for department in sorted_departments:
     print(f"{department}: {department_importance[department]:.2f}%")
 
-
+# Create a bar chart
+plt.figure(figsize=(10, 6))
+plt.bar(sorted_departments, [department_importance[department] for department in sorted_departments])
+plt.xlabel("Departamento")
+plt.ylabel("Importância na Rotatividade (%)")
+plt.title("Importância dos Departamentos na Rotatividade de Funcionários")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
 
 
