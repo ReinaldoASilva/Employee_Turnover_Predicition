@@ -35,7 +35,7 @@ Follow these steps to get started with the project:
 ## Usage
 To use the project, you can run the app.py script:
 
-python app.py
+![alt text](app.png)
 
 
 
