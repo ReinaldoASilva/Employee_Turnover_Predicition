@@ -44,12 +44,13 @@ Load the dataset from datasets_9768_13874_HR_comma_sep.csv.
 Preprocess the data, including renaming columns and converting categorical variables to dummy variables.
 Train a Random Forest model to predict employee turnover.
 Provide predictions based on the model.
-Dependencies
+
+## Dependencies
 This project relies on the following Python libraries:
 
-pandas
-numpy
-scikit-learn
+- pandas
+- numpy
+- scikit-learn
 You can install these libraries using the requirements.txt file provided.
 
 
